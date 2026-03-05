@@ -1,0 +1,21 @@
+# Travel-Planner 忽略规则：仅保留可复现项目所需文件
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Env
+.env
+.env.*
+backend/.env
+backend/.env.*
+!.env.example
+!backend/.env.example
+
+# Logs
+*.log

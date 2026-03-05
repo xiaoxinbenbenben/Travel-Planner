@@ -1,0 +1,23 @@
+[project]
+# 包信息：用于依赖解析与构建元数据
+name = "travel-planner-backend"
+version = "0.1.0"
+description = "Travel Planner backend based on FastAPI"
+readme = "README.md"
+requires-python = ">=3.10"
+# 运行时依赖：覆盖 API、模型、LLM 与 MCP 能力
+dependencies = [
+    "fastapi>=0.116.0",
+    "uvicorn>=0.35.0",
+    "pydantic>=2.11.0",
+    "openai>=1.108.0",
+    "fastmcp>=2.0.0",
+]
+
+[dependency-groups]
+# 开发依赖：测试与接口验证工具
+dev = [
+    "pytest>=8.4.0",
+    "pytest-asyncio>=0.24.0",
+    "httpx>=0.28.0",
+]
