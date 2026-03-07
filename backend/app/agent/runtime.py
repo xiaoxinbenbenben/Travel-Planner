@@ -56,13 +56,18 @@ class MiniAgent:
                 history.append(
                     {
                         "role": "assistant",
-                        "content": content or f"[TOOL_CALL:{call.tool_name}]",
+                        "content": json.dumps(
+                            {"tool_name": call.tool_name, "arguments": call.arguments},
+                            ensure_ascii=False,
+                        ),
                     }
                 )
                 history.append(
                     {
-                        "role": "tool",
-                        "content": json.dumps(result, ensure_ascii=False),
+                        # 该 Agent 采用“文本 JSON 工具调用协议”，
+                        # 因此工具返回也以普通对话消息回灌，避免与原生 role=tool 协议混用。
+                        "role": "user",
+                        "content": f"[TOOL_RESULT:{call.tool_name}] {json.dumps(result, ensure_ascii=False)}",
                     }
                 )
 
